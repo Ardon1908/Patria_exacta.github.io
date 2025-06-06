@@ -1,0 +1,1471 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patria Exacta - Oswaldo Escobar Velado</title>
+    <style>
+        :root {
+            --primary-color: #8B0000;
+            --secondary-color: #333;
+            --light-color: #f8f9fa;
+            --dark-color: #1a1a1a;
+            --accent-color: #d4af37;
+            --text-color: #333;
+            --bg-color: #f5f5f5;
+            --success-color: #4CAF50;
+            --error-color: #F44336;
+        }
+        
+        body {
+            font-family: 'Georgia', serif;
+            line-height: 1.8;
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color);
+            transition: all 0.3s ease;
+        }
+        
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            border-bottom: 5px solid var(--accent-color);
+            position: relative;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+        
+        .nav-container {
+            background-color: var(--dark-color);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        nav {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            overflow-x: auto;
+            white-space: nowrap;
+        }
+        
+        nav li {
+            flex: 1;
+            text-align: center;
+            min-width: 120px;
+        }
+        
+        nav a {
+            display: block;
+            color: white;
+            text-decoration: none;
+            padding: 1rem;
+            transition: all 0.3s;
+            font-weight: 500;
+        }
+        
+        nav a:hover, nav a.active {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+        }
+        
+        h2 {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 0.5rem;
+            margin-top: 2rem;
+            font-size: 1.8rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        h3 {
+            color: var(--primary-color);
+            font-size: 1.4rem;
+        }
+        
+        .section {
+            background-color: white;
+            padding: 2rem;
+            margin: 2rem 0;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+            border-radius: 5px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+        }
+        
+        .poem-section {
+            border-left: 5px solid var(--primary-color);
+        }
+        
+        .poem p {
+            margin-bottom: 1.5rem;
+            text-align: justify;
+            font-size: 1.1rem;
+        }
+        
+        .stanza {
+            margin-bottom: 2.5rem;
+            padding-left: 1rem;
+            border-left: 2px solid #eee;
+            position: relative;
+        }
+        
+        .audio-btn {
+            position: absolute;
+            right: 0;
+            top: 0;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+        
+        .audio-btn:hover {
+            background: #6d0000;
+            transform: scale(1.1);
+        }
+        
+        .quiz-section {
+            border-left: 5px solid var(--accent-color);
+        }
+        
+        .question {
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .question:last-child {
+            border-bottom: none;
+        }
+
+        .question .feedback {
+            font-weight: bold;
+            margin-top: 0.5rem;
+        }
+
+        .question .feedback.correct {
+            color: var(--success-color);
+        }
+
+        .question .feedback.incorrect {
+            color: var(--error-color);
+        }
+        
+        .options label {
+            display: block;
+            padding: 0.5rem;
+            margin: 0.5rem 0;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        
+        .options label:hover {
+            background-color: #f0f0f0;
+        }
+        
+        button, .btn {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s;
+            margin-top: 1rem;
+            border-radius: 4px;
+            font-weight: bold;
+            letter-spacing: 0.5px;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        button:hover, .btn:hover {
+            background-color: #6d0000;
+            transform: translateY(-2px);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+        
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+        
+        .results {
+            display: none;
+            margin-top: 2rem;
+            padding: 1.5rem;
+            background-color: #e9ecef;
+            border-left: 5px solid var(--accent-color);
+            border-radius: 4px;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .author-section {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .author-info {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .author-image {
+            flex: 0 0 200px;
+            text-align: center;
+        }
+        
+        .author-image img {
+            max-width: 100%;
+            border-radius: 50%;
+            border: 5px solid var(--accent-color);
+        }
+        
+        .theme-toggle {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255,255,255,0.2);
+            border: none;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+        
+        /* Quizz styles */
+        .quizz-container {
+            margin-top: 2rem;
+        }
+        
+        .quizz-tabs {
+            display: flex;
+            margin-bottom: 1rem;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .quizz-tab {
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            border: 1px solid transparent;
+            border-bottom: none;
+            border-radius: 4px 4px 0 0;
+            margin-right: 5px;
+            background: #f0f0f0;
+        }
+        
+        .quizz-tab.active {
+            background: var(--primary-color);
+            color: white;
+            border-color: #ddd;
+        }
+        
+        .quizz-content {
+            display: none;
+            padding: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 0 4px 4px 4px;
+            background: white;
+        }
+        
+        .quizz-content.active {
+            display: block;
+        }
+        
+        /* Word Search */
+        .word-search {
+            margin: 20px auto;
+            text-align: center;
+        }
+        
+        .word-search-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 30px);
+            gap: 2px;
+            justify-content: center;
+            background-color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+            padding: 5px;
+        }
+        
+        .word-search-cell {
+            width: 30px;
+            height: 30px;
+            background-color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            cursor: pointer;
+            user-select: none;
+            font-family: monospace;
+            font-size: 1.2rem;
+            transition: background-color 0.2s;
+        }
+        
+        .word-search-cell.selecting {
+            background-color: var(--accent-color);
+            color: white;
+        }
+        
+        .word-search-cell.found {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .word-search-words {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .word-search-word {
+            padding: 5px 10px;
+            border-radius: 4px;
+            background: #f0f0f0;
+            font-size: 0.9rem;
+        }
+        
+        .word-search-word.found {
+            text-decoration: line-through;
+            color: #777;
+            background: #e0e0e0;
+        }
+        
+        /* Crossword */
+        .crossword {
+            margin: 20px auto;
+            text-align: center;
+        }
+        
+        .crossword-grid {
+            display: grid;
+            grid-template-columns: repeat(13, 30px);
+            gap: 1px;
+            border: 2px solid var(--primary-color);
+            background-color: var(--secondary-color);
+            width: fit-content;
+            margin: 0 auto 20px auto;
+        }
+        
+        .crossword-cell {
+            width: 30px;
+            height: 30px;
+            position: relative;
+            background: white;
+            border: 1px solid #ddd;
+        }
+        
+        .crossword-cell.black {
+            background: var(--secondary-color);
+            border: none;
+        }
+        
+        .crossword-cell input {
+            width: 100%;
+            height: 100%;
+            border: none;
+            text-align: center;
+            font-size: 16px;
+            text-transform: uppercase;
+            background: transparent;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            font-weight: bold;
+            caret-color: var(--primary-color);
+        }
+
+        .crossword-cell input:focus {
+            outline: none;
+            background-color: #fffde7;
+        }
+
+        .crossword-cell.highlight {
+            background-color: #fffde7;
+        }
+
+        .crossword-cell .number {
+            position: absolute;
+            top: 1px;
+            left: 2px;
+            font-size: 9px;
+            font-weight: bold;
+            color: var(--secondary-color);
+            z-index: 1;
+            pointer-events: none;
+        }
+        
+        .crossword-clues {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+            margin-top: 20px;
+            text-align: left;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .crossword-clue-list {
+            flex: 1;
+            min-width: 280px;
+        }
+        
+        .crossword-clue {
+            margin-bottom: 8px;
+            cursor: pointer;
+            padding: 4px;
+            border-radius: 4px;
+            font-size: 0.9rem;
+        }
+        
+        .crossword-clue.highlighted {
+            background-color: #ffeb3b;
+        }
+        
+        .crossword-clue.solved {
+            text-decoration: line-through;
+            color: #4CAF50;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Dark mode styles */
+        body.dark-mode {
+            --text-color: #f0f0f0;
+            --bg-color: #121212;
+            --secondary-color: #444;
+            --dark-color: #000;
+        }
+        
+        body.dark-mode .section {
+            background-color: #1e1e1e;
+            color: #f0f0f0;
+            border-color: #333;
+        }
+        
+        body.dark-mode .options label:hover {
+            background-color: #333;
+        }
+        
+        body.dark-mode .results {
+            background-color: #2d2d2d;
+            color: #f0f0f0;
+        }
+        
+        body.dark-mode .quizz-content {
+            background: #1e1e1e;
+            border-color: #444;
+        }
+        
+        body.dark-mode .quizz-tab {
+            background: #333;
+            color: #f0f0f0;
+        }
+        
+        body.dark-mode .quizz-tab.active {
+            background: var(--primary-color);
+        }
+        
+        body.dark-mode .word-search-cell {
+            background-color: #333;
+            color: #f0f0f0;
+        }
+        body.dark-mode .word-search-grid {
+            background-color: var(--primary-color);
+        }
+        
+        body.dark-mode .word-search-word {
+            background: #333;
+            color: #f0f0f0;
+        }
+         body.dark-mode .word-search-word.found {
+            background-color: #222;
+            color: #888;
+        }
+        
+        body.dark-mode .crossword-grid {
+            background-color: var(--dark-color);
+        }
+
+        body.dark-mode .crossword-cell {
+            background: #333;
+            border-color: #444;
+        }
+
+        body.dark-mode .crossword-cell.black {
+             background: var(--dark-color);
+        }
+        
+        body.dark-mode .crossword-cell input {
+            color: #f0f0f0;
+        }
+
+        body.dark-mode .crossword-cell input:focus, body.dark-mode .crossword-cell.highlight {
+            background-color: #424242;
+        }
+
+        body.dark-mode .crossword-clue.highlighted {
+            background-color: #555;
+        }
+
+        body.dark-mode .crossword-clue.solved {
+            color: #81C784;
+        }
+
+        body.dark-mode .crossword-cell .number {
+            color: #ccc;
+        }
+        
+        @media (max-width: 768px) {
+            h1 { font-size: 2rem; }
+            h2 { font-size: 1.6rem; }
+            .section { padding: 1.5rem; }
+            
+            nav ul {
+                padding-left: 10px;
+                padding-right: 10px;
+            }
+            
+            .word-search-grid { grid-template-columns: repeat(12, 25px); }
+            .word-search-cell { width: 25px; height: 25px; font-size: 1rem;}
+
+            .crossword-grid { grid-template-columns: repeat(13, 25px); }
+            .crossword-cell { width: 25px; height: 25px; }
+            .crossword-cell input { font-size: 14px; }
+        }
+        
+        @media (max-width: 480px) {
+            h1 { font-size: 1.8rem; }
+            .poem p { font-size: 1rem; }
+            .author-section { flex-direction: column; text-align: center; }
+            
+            .word-search-grid { grid-template-columns: repeat(12, 22px); }
+            .word-search-cell { width: 22px; height: 22px; font-size: 0.9rem; }
+            .word-search-words { gap: 10px; }
+            .word-search-word { padding: 4px 8px; }
+
+            .crossword-grid { grid-template-columns: repeat(13, 22px); }
+            .crossword-cell { width: 22px; height: 22px; }
+            .crossword-cell input { font-size: 12px; }
+            .crossword-clues { flex-direction: column; gap: 15px; }
+            .crossword-clue-list { min-width: 100%; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Patria Exacta</h1>
+            <p>Oswaldo Escobar Velado</p>
+            <button class="theme-toggle" id="theme-toggle">🌓</button>
+        </div>
+    </header>
+    
+    <div class="nav-container">
+        <nav>
+            <ul>
+                <li><a href="#inicio" class="nav-link active">Inicio</a></li>
+                <li><a href="#poema" class="nav-link">Poema</a></li>
+                <li><a href="#autor" class="nav-link">Autor</a></li>
+                <li><a href="#analisis" class="nav-link">Análisis</a></li>
+                <li><a href="#quiz" class="nav-link">Cuestionario</a></li>
+                <li><a href="#quizz" class="nav-link">Juegos</a></li>
+            </ul>
+        </nav>
+    </div>
+    
+    <main class="container">
+        <section id="inicio" class="section">
+            <h2>Introducción</h2>
+            <p>"Patria Exacta" es un poema poderoso del salvadoreño Oswaldo Escobar Velado que expresa una crítica social profunda a las condiciones de desigualdad e injusticia en su país. Este poema, escrito con un lenguaje directo y contundente, revela las contradicciones entre el discurso oficial y la realidad del pueblo.</p>
+            <p>En esta página podrás leer el poema completo, conocer sobre su autor, analizar sus temas principales y poner a prueba tu comprensión con un cuestionario y juegos interactivos.</p>
+        </section>
+        
+        <section id="poema" class="section poem-section">
+            <h2>
+                El Poema Completo
+                <button id="play-all-poem" class="btn" style="font-size: 0.8rem; padding: 0.3rem 0.8rem;">
+                    <span id="play-icon">▶</span> Escuchar todo
+                </button>
+            </h2>
+            <div class="poem">
+                <div class="stanza">
+                    <button class="audio-btn">▶</button>
+                    <p data-text="Esta es mi Patria: un montón de hombres; millones de hombres; un panal de hombres que no saben siquiera de donde viene el semen de sus vidas intensamente amargas.">Esta es mi Patria:<br>
+                    un montón de hombres; millones<br>
+                    de hombres; un panal de hombres<br>
+                    que no saben siquiera<br>
+                    de donde viene el semen<br>
+                    de sus vidas<br>
+                    intensamente amargas.</p>
+                </div>
+                
+                <div class="stanza">
+                    <button class="audio-btn">▶</button>
+                    <p data-text="Esta es mi Patria: un río de dolor que va en camisa y un puño de ladrones asaltando en pleno día la sangre de los pobres. Cada Gerente de las Compañías es un pirata a sueldo; cada Ministro del Gobierno Democrático un demagogo que hace discursos y que el pueblo apenas los entiende.">Esta es mi Patria:<br>
+                    un río de dolor que va en camisa<br>
+                    y un puño de ladrones<br>
+                    asaltando<br>
+                    en pleno día<br>
+                    la sangre de los pobres.<br>
+                    Cada Gerente de las Compañías<br>
+                    es un pirata a sueldo; cada<br>
+                    Ministro del Gobierno Democrático<br>
+                    un demagogo<br>
+                    que hace discursos y que el pueblo<br>
+                    apenas los entiende.</p>
+                </div>
+                
+                <div class="stanza">
+                    <button class="audio-btn">▶</button>
+                    <p data-text="Ayer oí decir a uno de esos técnicos expertos en cuestiones económicas; que todo marcha bien; que las divisas en oro de la patria iluminan las noches de Washington; que nuestro crédito es maravilloso; que la balanza comercial es favorable; que el precio del café se mantendrá como un águila ascendiendo y que somos un pueblo feliz que vive y canta.">Ayer oí decir a uno de esos técnicos<br>
+                    expertos en cuestiones<br>
+                    económicas; que todo<br>
+                    marcha bien; que las divisas<br>
+                    en oro de la patria<br>
+                    iluminan las noches<br>
+                    de Washington; que nuestro crédito<br>
+                    es maravilloso; que la balanza<br>
+                    comercial es favorable; que el precio<br>
+                    del café se mantendrá<br>
+                    como un águila ascendiendo y que somos<br>
+                    un pueblo feliz que vive y canta.</p>
+                </div>
+                
+                <div class="stanza">
+                    <button class="audio-btn">▶</button>
+                    <p data-text="Así marcha y camina la mentira entre nosotros. Así las actitudes de los irresponsables. Y así el mundo ficticio donde cantan como canarios tísicos, tres o cuatro poetas, empleados del Gobierno. Digan, griten, poetas del alpiste.">Así marcha y camina la mentira entre nosotros.<br>
+                    Así las actitudes de los irresponsables.<br>
+                    Y así el mundo ficticio donde cantan<br>
+                    como canarios tísicos,<br>
+                    tres o cuatro poetas,<br>
+                    empleados del Gobierno.<br>
+                    Digan, griten, poetas del alpiste.</p>
+                </div>
+                
+                <div class="stanza">
+                    <button class="audio-btn">▶</button>
+                    <p data-text="Digan la verdad que nos asedia. Digan que somos un pueblo desnutrido. Que la leche y la carne se la reparten entre ustedes después que se han hartado los dirigentes de la cosa pública.">Digan la verdad que nos asedia.<br>
+                    Digan que somos un pueblo desnutrido.<br>
+                    Que la leche y la carne se la reparten<br>
+                    entre ustedes<br>
+                    después que se han hartado<br>
+                    los dirigentes de la cosa pública. […]</p>
+                </div>
+                
+                <div class="stanza">
+                    <button class="audio-btn">▶</button>
+                    <p data-text="Digan que somos lo que somos un pueblo doloroso, un pueblo analfabeto, desnutrido y sin embargo fuerte porque otro pueblo ya se habría muerto. Digan que somos, eso sí, un pueblo excepcional que ama la libertad muy a pesar del hambre en que agoniza. Yo grito, afirmo y aseguro.">Digan que somos lo que somos<br>
+                    un pueblo doloroso,<br>
+                    un pueblo analfabeto,<br>
+                    desnutrido y sin embargo fuerte<br>
+                    porque otro pueblo ya se habría muerto.<br>
+                    <br>
+                    Digan que somos, eso sí, un pueblo excepcional<br>
+                    que ama la libertad muy a pesar del hambre<br>
+                    en que agoniza.<br>
+                    <br>
+                    Yo grito, afirmo y aseguro.</p>
+                </div>
+                
+                <div class="stanza">
+                    <button class="audio-btn">▶</button>
+                    <p data-text="En todas partes donde vivo, el cerro. En todas partes donde canto, el hambre El hambre y el dolor junto a los hombres. La miseria golpeándoles la vida hasta quebrar el barro mas cocido del alma. Y a esto amigo se le llama Patria y se le canta un himno y hablamos de ella como cosa suave, como dulce tierra a la que hay que entregar el corazón hasta la muerte. Mientras tanto al occidente de la casa que ocupo hay una imagen encaramada en el mundo y allá junto a sus pies de frío mármol una colonia alegre se va en las tardes cantando, a los Cinemas.">En todas partes donde vivo, el cerro.<br>
+                    En todas partes donde canto, el hambre<br>
+                    El hambre y el dolor junto a los hombres.<br>
+                    La miseria golpeándoles la vida<br>
+                    hasta quebrar el barro mas cocido del alma. […]<br>
+                    <br>
+                    Y a esto amigo se le llama Patria<br>
+                    y se le canta un himno<br>
+                    y hablamos de ella como cosa suave,<br>
+                    como dulce tierra<br>
+                    a la que hay que entregar el corazón hasta la muerte.<br>
+                    Mientras tanto al occidente de la casa que ocupo<br>
+                    hay una imagen encaramada en el mundo<br>
+                    (¡mayor razón para que viera claro!)<br>
+                    y allá junto a sus pies de frío mármol<br>
+                    una colonia alegre<br>
+                    se va en las tardes<br>
+                    cantando, a los Cinemas.</p>
+                </div>
+                
+                <div class="stanza">
+                    <button class="audio-btn">▶</button>
+                    <p data-text='Bajo la sombra de El Salvador del Mundo se mira el rostro de los explotadores. Sus grandes residencias con sus ventanas que cantan. La noche iluminada para besar en Cadillac a una muchacha rubia. Allá en el rostro de la Patria, un gran dolor nocturno: allá y yo con ellos, están los explotados. Los que nada tenemos como no sea un grito universal y alto para espantar la noche.'>Bajo la sombra de "El Salvador del Mundo"<br>
+                    se mira el rostro de los explotadores.<br>
+                    Sus grandes residencias con sus ventanas que cantan.<br>
+                    La noche iluminada para besar en Cadillac<br>
+                    a una muchacha rubia.<br>
+                    <br>
+                    Allá en el rostro de la Patria, un gran dolor<br>
+                    nocturno: allá y yo con ellos, están los explotados.<br>
+                    Los que nada tenemos como no sea un grito<br>
+                    universal y alto para espantar la noche.</p>
+                </div>
+                
+                <div class="stanza">
+                    <button class="audio-btn">▶</button>
+                    <p data-text="Allá las mesas de pino; las paredes húmedas; las pestañas de las tristes candelas; la orilla de un marco de retrato apolillado; los porrones donde el agua canta; la cómoda donde se guardan las boletas de empeño; las desesperadas camisas; el escaso pan junto a los Lunes huérfanos de horizontes; el correr de los amargos días; las casas donde el desahucio llega y los muebles se quedan en la calle mientras los niños y las madres lloran. Allá en todo esto, junto a todo esto, como brasa mi corazón denuncia al apretado mundo la desolada habitación del hombre que sostiene el humo de las fábricas.">Allá las mesas de pino; las paredes<br>
+                    húmedas; las pestañas de las tristes candelas;<br>
+                    la orilla de un marco de retrato<br>
+                    apolillado; los porrones<br>
+                    donde el agua canta; la cómoda<br>
+                    donde se guardan las boletas<br>
+                    de empeño; las desesperadas<br>
+                    camisas; el escaso pan junto a los Lunes<br>
+                    huérfanos de horizontes; el correr<br>
+                    de los amargos días; las casas<br>
+                    donde el desahucio llega y los muebles<br>
+                    se quedan en la calle<br>
+                    mientras los niños y las madres lloran.<br>
+                    <br>
+                    Allá en todo esto, junto a todo esto,<br>
+                    como brasa mi corazón<br>
+                    denuncia al apretado mundo<br>
+                    la desolada habitación del hombre que sostiene<br>
+                    el humo de las fábricas.</p>
+                </div>
+                
+                <div class="stanza">
+                    <button class="audio-btn">▶</button>
+                    <p data-text="Esta es la realidad. Esta es Mi Patria: 14 explotadores y millones que mueren sin sangre en las entrañas. Esta es la realidad. Yo no callo aunque me cueste el alma!">Esta es la realidad.<br>
+                    <br>
+                    Esta es Mi Patria: 14 explotadores<br>
+                    y millones que mueren sin sangre en las entrañas.<br>
+                    <br>
+                    Esta es la realidad.<br>
+                    <br>
+                    Yo no callo aunque me cueste el alma!</p>
+                </div>
+            </div>
+        </section>
+        
+        <section id="autor" class="section">
+            <h2>Sobre el Autor</h2>
+            <div class="author-section">
+                <div class="author-info">
+                    <h3>Oswaldo Escobar Velado (1919-1961)</h3>
+                    <p>Poeta salvadoreño nacido en Santa Ana, considerado uno de los máximos exponentes de la poesía social en El Salvador. Su obra se caracteriza por un profundo compromiso con la realidad social de su país y una crítica directa a las injusticias y desigualdades.</p>
+                    <p>Escobar Velado fue parte de la llamada "Generación Comprometida", un grupo de escritores que en las décadas de 1940 y 1950 buscó dar voz a los sectores marginados de la sociedad salvadoreña a través de la literatura.</p>
+                    <p>"Patria Exacta" es quizás su poema más conocido, donde con lenguaje crudo y directo denuncia la explotación y miseria del pueblo salvadoreño, contrastándola con la opulencia de una pequeña élite.</p>
+                </div>
+                <div class="author-image">
+                    <img src="https://lh3.googleusercontent.com/pw/AP1GczNwE-g0o2pG7p9s-8pP7H9v8c_xWc_7nJqK_Z_kG6jG-x_t_Q_yR_l-L9_z9F_jN-7Z-N_Q_xW8vPqPqI_X_Yg=w200-h200-no" alt="Oswaldo Escobar Velado">
+                </div>
+            </div>
+        </section>
+        
+        <section id="analisis" class="section">
+            <h2>Análisis del Poema</h2>
+            <h3>Temas Principales</h3>
+            <ul>
+                <li><strong>Desigualdad social:</strong> El poema contrasta la opulencia de los explotadores con la miseria del pueblo.</li>
+                <li><strong>Crítica política:</strong> Denuncia la corrupción y el engaño de los gobernantes y las élites económicas.</li>
+                <li><strong>Identidad nacional:</strong> Explora el concepto de patria más allá de los símbolos oficiales.</li>
+                <li><strong>Resistencia popular:</strong> Destaca la fortaleza del pueblo a pesar de las condiciones adversas.</li>
+            </ul>
+            
+            <h3>Recursos Literarios</h3>
+            <ul>
+                <li><strong>Metáforas:</strong> "un panal de hombres", "un río de dolor", "canarios tísicos".</li>
+                <li><strong>Imágenes contrastantes:</strong> Pobreza vs. riqueza, discursos oficiales vs. realidad.</li>
+                <li><strong>Lenguaje directo:</strong> Uso de un vocabulario crudo y sin adornos para mayor impacto.</li>
+                <li><strong>Anáfora:</strong> Repetición de "Esta es mi Patria" y "Digan" para enfatizar.</li>
+            </ul>
+            
+            <h3>Contexto Histórico</h3>
+            <p>El poema fue escrito en un período de gran desigualdad social en El Salvador, cuando una pequeña oligarquía controlaba la economía del país (especialmente el cultivo del café) mientras la mayoría de la población vivía en condiciones de pobreza extrema. Esta situación sería una de las causas fundamentales del conflicto armado que viviría el país décadas después.</p>
+        </section>
+        
+        <section id="quiz" class="section quiz-section">
+            <h2>Cuestionario Interactivo</h2>
+            <p>Pon a prueba tu comprensión del poema con este cuestionario de 10 preguntas.</p>
+            
+            <form id="quiz-form">
+                <div class="question">
+                    <p><strong>1. ¿Qué metáfora utiliza el poeta para describir a la población de su patria?</strong></p>
+                    <div class="options">
+                        <label><input type="radio" name="q1" value="a"> Un bosque de hombres</label>
+                        <label><input type="radio" name="q1" value="b"> Un panal de hombres</label>
+                        <label><input type="radio" name="q1" value="c"> Un mar de hombres</label>
+                        <label><input type="radio" name="q1" value="d"> Un ejército de hombres</label>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+                
+                <div class="question">
+                    <p><strong>2. Según el poema, ¿cómo describe el autor a los gerentes de las compañías?</strong></p>
+                    <div class="options">
+                        <label><input type="radio" name="q2" value="a"> Como benefactores sociales</label>
+                        <label><input type="radio" name="q2" value="b"> Como piratas a sueldo</label>
+                        <label><input type="radio" name="q2" value="c"> Como víctimas del sistema</label>
+                        <label><input type="radio" name="q2" value="d"> Como ignorantes de la realidad</label>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+                
+                <div class="question">
+                    <p><strong>3. ¿Qué crítica hace el poeta a los discursos oficiales sobre la economía?</strong></p>
+                    <div class="options">
+                        <label><input type="radio" name="q3" value="a"> Que son demasiado técnicos</label>
+                        <label><input type="radio" name="q3" value="b"> Que son mentiras que ocultan la realidad</label>
+                        <label><input type="radio" name="q3" value="c"> Que no llegan a toda la población</label>
+                        <label><input type="radio" name="q3" value="d"> Que son demasiado optimistas</label>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+                
+                <div class="question">
+                    <p><strong>4. ¿Cómo describe el poeta a los poetas empleados del gobierno?</strong></p>
+                    <div class="options">
+                        <label><input type="radio" name="q4" value="a"> Como canarios tísicos</label>
+                        <label><input type="radio" name="q4" value="b"> Como ruiseñores de la patria</label>
+                        <label><input type="radio" name="q4" value="c"> Como la voz del pueblo</label>
+                        <label><input type="radio" name="q4" value="d"> Como héroes nacionales</label>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+                
+                <div class="question">
+                    <p><strong>5. El poeta le pide a otros poetas que digan la verdad. ¿Cuál es una de esas verdades?</strong></p>
+                    <div class="options">
+                        <label><input type="radio" name="q5" value="a"> Que el país es próspero</label>
+                        <label><input type="radio" name="q5" value="b"> Que la gente es feliz</label>
+                        <label><input type="radio" name="q5" value="c"> Que el pueblo está desnutrido</label>
+                        <label><input type="radio" name="q5" value="d"> Que el gobierno es justo</label>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+
+                <div class="question">
+                    <p><strong>6. A pesar del hambre, ¿qué cualidad excepcional dice el poeta que tiene su pueblo?</strong></p>
+                    <div class="options">
+                        <label><input type="radio" name="q6" value="a"> Ama la libertad</label>
+                        <label><input type="radio" name="q6" value="b"> Es muy trabajador</label>
+                        <label><input type="radio" name="q6" value="c"> Es muy religioso</label>
+                        <label><input type="radio" name="q6" value="d"> Es muy paciente</label>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+
+                <div class="question">
+                    <p><strong>7. ¿Qué monumento de San Salvador se menciona para contrastar la riqueza y la pobreza?</strong></p>
+                    <div class="options">
+                        <label><input type="radio" name="q7" value="a"> El Palacio Nacional</label>
+                        <label><input type="radio" name="q7" value="b"> La Puerta del Diablo</label>
+                        <label><input type="radio" name="q7" value="c"> El Salvador del Mundo</label>
+                        <label><input type="radio" name="q7" value="d"> El Monumento a la Libertad</label>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+
+                <div class="question">
+                    <p><strong>8. En la última estrofa, el poeta resume la realidad de su patria como...</strong></p>
+                    <div class="options">
+                        <label><input type="radio" name="q8" value="a"> Un paraíso terrenal</label>
+                        <label><input type="radio" name="q8" value="b"> Un país en vías de desarrollo</label>
+                        <label><input type="radio" name="q8" value="c"> Una democracia ejemplar</label>
+                        <label><input type="radio" name="q8" value="d"> 14 explotadores y millones que mueren</label>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+                
+                <div class="question">
+                    <p><strong>9. ¿Quién es el autor del poema "Patria Exacta"?</strong></p>
+                    <div class="options">
+                        <label><input type="radio" name="q9" value="a"> Oswaldo Escobar Velado</label>
+                        <label><input type="radio" name="q9" value="b"> Roque Dalton</label>
+                        <label><input type="radio" name="q9" value="c"> Claudia Lars</label>
+                        <label><input type="radio" name="q9" value="d"> Salarrué</label>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+
+                <div class="question">
+                    <p><strong>10. ¿A qué grupo de escritores perteneció el autor?</strong></p>
+                    <div class="options">
+                        <label><input type="radio" name="q10" value="a"> La Generación del 27</label>
+                        <label><input type="radio" name="q10" value="b"> La Generación Comprometida</label>
+                        <label><input type="radio" name="q10" value="c"> El Boom Latinoamericano</label>
+                        <label><input type="radio" name="q10" value="d"> El Modernismo</label>
+                    </div>
+                    <div class="feedback"></div>
+                </div>
+
+                <button type="submit" class="btn">Verificar respuestas</button>
+            </form>
+            <div id="quiz-results" class="results"></div>
+        </section>
+        
+        <section id="quizz" class="section">
+            <h2>Juegos Interactivos</h2>
+            <div class="quizz-container">
+                <div class="quizz-tabs">
+                    <div class="quizz-tab active" data-tab="crossword">Crucigrama</div>
+                    <div class="quizz-tab" data-tab="word-search">Sopa de Letras</div>
+                </div>
+                
+                <div id="crossword" class="quizz-content active">
+                    <h3>Crucigrama del Poema</h3>
+                    <p>Completa el crucigrama con palabras clave del poema y su contexto. Haz clic en una pista para empezar.</p>
+                    <div class="crossword">
+                        <div class="crossword-grid" id="crossword-grid">
+                            </div>
+                        <div class="crossword-clues">
+                            <div class="crossword-clue-list">
+                                <h3>Horizontales</h3>
+                                <div id="across-clues"></div>
+                            </div>
+                            <div class="crossword-clue-list">
+                                <h3>Verticales</h3>
+                                <div id="down-clues"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <button id="check-crossword-btn" class="btn">Verificar Crucigrama</button>
+                </div>
+                
+                <div id="word-search" class="quizz-content">
+                    <h3>Sopa de Letras</h3>
+                    <p>Encuentra las palabras relacionadas con el poema en la sopa de letras. Haz clic en la primera letra y arrastra hasta la última.</p>
+                    <div class="word-search">
+                        <div class="word-search-grid" id="word-search-grid">
+                            </div>
+                        <div class="word-search-words" id="word-search-words">
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <div class="container">
+            <p>&copy; 2025. Un homenaje a Oswaldo Escobar Velado y su "Patria Exacta".</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            // --- THEME TOGGLE ---
+            const themeToggle = document.getElementById('theme-toggle');
+            const body = document.body;
+
+            themeToggle.addEventListener('click', () => {
+                body.classList.toggle('dark-mode');
+                localStorage.setItem('theme', body.classList.contains('dark-mode') ? 'dark' : 'light');
+            });
+
+            if (localStorage.getItem('theme') === 'dark') {
+                body.classList.add('dark-mode');
+            }
+
+            // --- SMOOTH SCROLLING & ACTIVE NAV LINK ---
+            const navLinks = document.querySelectorAll('.nav-link');
+            const sections = document.querySelectorAll('section');
+
+            navLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    document.querySelector(link.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        navLinks.forEach(link => {
+                            link.classList.remove('active');
+                            if (link.getAttribute('href').substring(1) === entry.target.id) {
+                                link.classList.add('active');
+                            }
+                        });
+                    }
+                });
+            }, { threshold: 0.6 });
+
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+
+
+            // --- AUDIO PLAYER ---
+            const synth = window.speechSynthesis;
+            let utterance;
+
+            document.querySelectorAll('.audio-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const stanza = e.target.closest('.stanza');
+                    const textToSpeak = stanza.querySelector('p').getAttribute('data-text');
+                    playAudio(textToSpeak, e.target);
+                });
+            });
+
+            const playAllBtn = document.getElementById('play-all-poem');
+            playAllBtn.addEventListener('click', () => {
+                const isPlaying = playAllBtn.classList.contains('playing');
+                if(isPlaying) {
+                    synth.cancel();
+                    playAllBtn.classList.remove('playing');
+                    playAllBtn.querySelector('#play-icon').textContent = '▶';
+                } else {
+                    const allText = Array.from(document.querySelectorAll('.stanza p'))
+                        .map(p => p.getAttribute('data-text'))
+                        .join(' \n ');
+                    playAudio(allText, playAllBtn);
+                }
+            });
+
+            function playAudio(text, button) {
+                if (synth.speaking) {
+                    synth.cancel();
+                    if(utterance && utterance.text === text){
+                        return; // Stop if it's the same text
+                    }
+                }
+                utterance = new SpeechSynthesisUtterance(text);
+                utterance.lang = 'es-ES';
+                utterance.rate = 0.9;
+                
+                const playIcon = button.querySelector('#play-icon');
+
+                utterance.onstart = () => {
+                    if (playIcon) {
+                        button.classList.add('playing');
+                        playIcon.textContent = '■';
+                    }
+                };
+                utterance.onend = () => {
+                    if (playIcon) {
+                        button.classList.remove('playing');
+                        playIcon.textContent = '▶';
+                    }
+                };
+                utterance.onerror = () => {
+                    if (playIcon) {
+                        button.classList.remove('playing');
+                        playIcon.textContent = '▶';
+                    }
+                };
+                
+                synth.speak(utterance);
+            }
+
+
+            // --- INTERACTIVE QUIZ ---
+            const quizForm = document.getElementById('quiz-form');
+            const quizResults = document.getElementById('quiz-results');
+            const correctAnswers = {
+                q1: 'b', q2: 'b', q3: 'b', q4: 'a', q5: 'c',
+                q6: 'a', q7: 'c', q8: 'd', q9: 'a', q10: 'b'
+            };
+
+            quizForm.addEventListener('submit', e => {
+                e.preventDefault();
+                let score = 0;
+                const totalQuestions = Object.keys(correctAnswers).length;
+                const formData = new FormData(quizForm);
+
+                // Clear previous feedback
+                document.querySelectorAll('.question .feedback').forEach(fb => {
+                    fb.textContent = '';
+                    fb.className = 'feedback';
+                });
+
+                for (let [question, userAnswer] of formData.entries()) {
+                    const correctAnswer = correctAnswers[question];
+                    const questionDiv = quizForm.querySelector(`input[name="${question}"]`).closest('.question');
+                    const feedbackDiv = questionDiv.querySelector('.feedback');
+                    
+                    if (userAnswer === correctAnswer) {
+                        score++;
+                        feedbackDiv.textContent = '¡Correcto!';
+                        feedbackDiv.classList.add('correct');
+                    } else {
+                        feedbackDiv.textContent = `Incorrecto. La respuesta correcta era la opción ${correctAnswer.toUpperCase()}.`;
+                        feedbackDiv.classList.add('incorrect');
+                    }
+                }
+
+                quizResults.style.display = 'block';
+                quizResults.innerHTML = `<h3>Tu puntuación: ${score} de ${totalQuestions}</h3>`;
+                quizResults.scrollIntoView({ behavior: 'smooth' });
+            });
+
+
+            // --- QUIZZ TABS ---
+            const tabs = document.querySelectorAll('.quizz-tab');
+            const contents = document.querySelectorAll('.quizz-content');
+
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    tabs.forEach(t => t.classList.remove('active'));
+                    contents.forEach(c => c.classList.remove('active'));
+
+                    tab.classList.add('active');
+                    document.getElementById(tab.dataset.tab).classList.add('active');
+                });
+            });
+
+            // --- WORD SEARCH GAME ---
+            const wordSearchGrid = document.getElementById('word-search-grid');
+            const wordSearchWordsContainer = document.getElementById('word-search-words');
+            const wsWords = ['PATRIA', 'DOLOR', 'PUEBLO', 'HAMBRE', 'LIBERTAD', 'DENUNCIA', 'POETA', 'VERDAD', 'GRITO', 'MISERIA'];
+            const wsGridSize = 12;
+            let wsGrid = Array.from({ length: wsGridSize }, () => Array(wsGridSize).fill(''));
+            let wsFoundWords = new Set();
+            
+            function generateWordSearch() {
+                // Simplified placement logic
+                const directions = [[0, 1], [1, 0], [1, 1]]; // H, V, Diag
+                wsWords.forEach(word => {
+                    let placed = false;
+                    while(!placed) {
+                        const dir = directions[Math.floor(Math.random() * directions.length)];
+                        const row = Math.floor(Math.random() * wsGridSize);
+                        const col = Math.floor(Math.random() * wsGridSize);
+                        
+                        let r = row, c = col;
+                        let canPlace = true;
+                        for (let i = 0; i < word.length; i++) {
+                            if (r < 0 || r >= wsGridSize || c < 0 || c >= wsGridSize || (wsGrid[r][c] !== '' && wsGrid[r][c] !== word[i])) {
+                                canPlace = false;
+                                break;
+                            }
+                            r += dir[0]; c += dir[1];
+                        }
+                        
+                        if (canPlace) {
+                             r = row; c = col;
+                            for (let i = 0; i < word.length; i++) {
+                                wsGrid[r][c] = word[i];
+                                r += dir[0]; c += dir[1];
+                            }
+                            placed = true;
+                        }
+                    }
+                });
+
+                // Fill rest of grid
+                const alphabet = 'ABCDEFGHIJKLMNÑOPQRSTUVWXYZ';
+                for(let r = 0; r < wsGridSize; r++) {
+                    for(let c = 0; c < wsGridSize; c++) {
+                        if (wsGrid[r][c] === '') {
+                            wsGrid[r][c] = alphabet[Math.floor(Math.random() * alphabet.length)];
+                        }
+                        const cell = document.createElement('div');
+                        cell.className = 'word-search-cell';
+                        cell.textContent = wsGrid[r][c];
+                        cell.dataset.row = r;
+                        cell.dataset.col = c;
+                        wordSearchGrid.appendChild(cell);
+                    }
+                }
+                
+                // Display words
+                wsWords.forEach(word => {
+                    const wordEl = document.createElement('div');
+                    wordEl.className = 'word-search-word';
+                    wordEl.id = `ws-word-${word}`;
+                    wordEl.textContent = word;
+                    wordSearchWordsContainer.appendChild(wordEl);
+                });
+            }
+            
+            let isSelecting = false;
+            let selection = [];
+
+            wordSearchGrid.addEventListener('mousedown', e => {
+                if (e.target.classList.contains('word-search-cell')) {
+                    isSelecting = true;
+                    selection = [e.target];
+                    e.target.classList.add('selecting');
+                }
+            });
+
+            wordSearchGrid.addEventListener('mouseover', e => {
+                if (isSelecting && e.target.classList.contains('word-search-cell')) {
+                    if (!selection.includes(e.target)) {
+                         selection.push(e.target);
+                         e.target.classList.add('selecting');
+                    }
+                }
+            });
+
+            wordSearchGrid.addEventListener('mouseup', () => {
+                isSelecting = false;
+                const selectedWord = selection.map(cell => cell.textContent).join('');
+                const reversedSelectedWord = [...selectedWord].reverse().join('');
+                
+                let found = false;
+                if (wsWords.includes(selectedWord) && !wsFoundWords.has(selectedWord)) {
+                    found = true;
+                    wsFoundWords.add(selectedWord);
+                    document.getElementById(`ws-word-${selectedWord}`).classList.add('found');
+                } else if (wsWords.includes(reversedSelectedWord) && !wsFoundWords.has(reversedSelectedWord)) {
+                    found = true;
+                     wsFoundWords.add(reversedSelectedWord);
+                     document.getElementById(`ws-word-${reversedSelectedWord}`).classList.add('found');
+                }
+
+                if (found) {
+                    selection.forEach(cell => cell.classList.add('found'));
+                }
+
+                document.querySelectorAll('.word-search-cell.selecting').forEach(c => c.classList.remove('selecting'));
+                selection = [];
+            });
+
+            generateWordSearch();
+
+
+            // --- CROSSWORD GAME ---
+            const crosswordData = {
+                gridSize: 13,
+                across: {
+                    1: { clue: "Apellido del autor del poema.", answer: "ESCOBAR", row: 0, col: 4 },
+                    5: { clue: "Lo que el pueblo ama a pesar del hambre.", answer: "LIBERTAD", row: 2, col: 5 },
+                    7: { clue: "Se utiliza para describir a los gerentes de las compañías.", answer: "PIRATAS", row: 4, col: 0 },
+                    8: { clue: "Producto agrícola cuyo precio se menciona como favorable en los discursos.", answer: "CAFE", row: 4, col: 7 },
+                    9: { clue: "Lo que el poeta denuncia que marcha y camina entre la gente.", answer: "MENTIRA", row: 6, col: 4 },
+                    11: { clue: "Marca de auto de lujo mencionado en el poema.", answer: "CADILLAC", row: 8, col: 0 },
+                    12: { clue: "Condición del pueblo que sufre por falta de comida.", answer: "HAMBRE", row: 10, col: 5 },
+                    13: { clue: "Lo que el poeta pide que digan los otros poetas.", answer: "VERDAD", row: 12, col: 1 },
+                },
+                down: {
+                    2: { clue: "Sentimiento constante en el 'río' que es la patria.", answer: "DOLOR", row: 0, col: 9 },
+                    3: { clue: "Generación literaria del autor.", answer: "COMPROMETIDA", row: 1, col: 7 },
+                    4: { clue: "Condición de pobreza extrema.", answer: "MISERIA", row: 1, col: 11 },
+                    6: { clue: "Acción principal que realiza el corazón del poeta.", answer: "DENUNCIA", row: 2, col: 5 },
+                    10: { clue: "Número de explotadores que menciona el poema.", answer: "CATORCE", row: 6, col: 10 },
+                }
+            };
+            
+            const gridContainer = document.getElementById('crossword-grid');
+            const acrossCluesContainer = document.getElementById('across-clues');
+            const downCluesContainer = document.getElementById('down-clues');
+            let cells = [];
+
+            function generateCrossword() {
+                // Create grid structure
+                let grid = Array.from({ length: crosswordData.gridSize }, () => Array(crosswordData.gridSize).fill(null));
+                
+                for (const dir in crosswordData) {
+                    if (dir === 'gridSize') continue;
+                    for (const num in crosswordData[dir]) {
+                        const { answer, row, col } = crosswordData[dir][num];
+                        for (let i = 0; i < answer.length; i++) {
+                            const r = dir === 'across' ? row : row + i;
+                            const c = dir === 'across' ? col + i : col;
+                            if (!grid[r][c]) {
+                                grid[r][c] = { across: null, down: null, answer: answer[i] };
+                            }
+                            grid[r][c][dir] = num;
+                        }
+                    }
+                }
+
+                // Render grid and clues
+                grid.forEach((row, r) => {
+                    cells[r] = [];
+                    row.forEach((cellData, c) => {
+                        const cell = document.createElement('div');
+                        if (cellData) {
+                            cell.className = 'crossword-cell';
+                            const input = document.createElement('input');
+                            input.type = 'text';
+                            input.maxLength = 1;
+                            input.dataset.row = r;
+                            input.dataset.col = c;
+                            input.dataset.answer = cellData.answer;
+                            cell.appendChild(input);
+                            
+                            // Find number
+                            let number = null;
+                            if (crosswordData.across[cellData.across]?.row === r && crosswordData.across[cellData.across]?.col === c) {
+                                number = cellData.across;
+                            } else if (crosswordData.down[cellData.down]?.row === r && crosswordData.down[cellData.down]?.col === c) {
+                                number = cellData.down;
+                            }
+
+                            if (number) {
+                                const numEl = document.createElement('span');
+                                numEl.className = 'number';
+                                numEl.textContent = number;
+                                cell.appendChild(numEl);
+                            }
+                            cells[r][c] = input;
+                        } else {
+                            cell.className = 'crossword-cell black';
+                            cells[r][c] = null;
+                        }
+                        gridContainer.appendChild(cell);
+                    });
+                });
+                
+                // Render clues
+                for (const num in crosswordData.across) {
+                    const clueData = crosswordData.across[num];
+                    const clueEl = document.createElement('div');
+                    clueEl.className = 'crossword-clue';
+                    clueEl.textContent = `${num}. ${clueData.clue}`;
+                    clueEl.dataset.num = num;
+                    clueEl.dataset.dir = 'across';
+                    acrossCluesContainer.appendChild(clueEl);
+                }
+                for (const num in crosswordData.down) {
+                    const clueData = crosswordData.down[num];
+                    const clueEl = document.createElement('div');
+                    clueEl.className = 'crossword-clue';
+                    clueEl.textContent = `${num}. ${clueData.clue}`;
+                    clueEl.dataset.num = num;
+                    clueEl.dataset.dir = 'down';
+                    downCluesContainer.appendChild(clueEl);
+                }
+            }
+
+            function highlightWord(num, dir) {
+                document.querySelectorAll('.crossword-cell.highlight').forEach(c => c.classList.remove('highlight'));
+                document.querySelectorAll('.crossword-clue.highlighted').forEach(c => c.classList.remove('highlighted'));
+                
+                const wordData = crosswordData[dir][num];
+                if (!wordData) return;
+
+                document.querySelector(`.crossword-clue[data-num="${num}"][data-dir="${dir}"]`).classList.add('highlighted');
+
+                for (let i = 0; i < wordData.answer.length; i++) {
+                    const r = dir === 'across' ? wordData.row : wordData.row + i;
+                    const c = dir === 'across' ? wordData.col + i : col;
+                    cells[r][c].parentElement.classList.add('highlight');
+                }
+                cells[wordData.row][wordData.col].focus();
+            }
+
+            document.querySelector('.crossword-clues').addEventListener('click', e => {
+                if(e.target.classList.contains('crossword-clue')) {
+                    const { num, dir } = e.target.dataset;
+                    highlightWord(num, dir);
+                }
+            });
+
+            gridContainer.addEventListener('keydown', e => {
+                if (!e.target.matches('input')) return;
+                const { row, col } = e.target.dataset;
+                const r = parseInt(row), c = parseInt(col);
+                let nextCell;
+
+                switch (e.key) {
+                    case 'ArrowUp': 
+                        nextCell = cells[r-1] ? cells[r-1][c] : null; break;
+                    case 'ArrowDown': 
+                        nextCell = cells[r+1] ? cells[r+1][c] : null; break;
+                    case 'ArrowLeft': 
+                        nextCell = cells[r][c-1]; break;
+                    case 'ArrowRight':
+                        nextCell = cells[r][c+1]; break;
+                    default: return;
+                }
+                if (nextCell) {
+                    e.preventDefault();
+                    nextCell.focus();
+                }
+            });
+
+            gridContainer.addEventListener('input', e => {
+                if (!e.target.matches('input')) return;
+                const { row, col } = e.target.dataset;
+                const r = parseInt(row), c = parseInt(col);
+                if (e.target.value) {
+                   const nextCell = cells[r][c+1] || (cells[r+1] ? cells[r+1][0] : null);
+                   if(nextCell) nextCell.focus();
+                }
+            });
+
+            document.getElementById('check-crossword-btn').addEventListener('click', () => {
+                let allCorrect = true;
+                cells.forEach(row => {
+                    row.forEach(input => {
+                        if (input) {
+                            input.style.backgroundColor = '';
+                            input.style.color = '';
+                            if (input.value.toUpperCase() === input.dataset.answer) {
+                                input.style.color = 'var(--success-color)';
+                            } else {
+                                input.style.color = 'var(--error-color)';
+                                allCorrect = false;
+                            }
+                        }
+                    });
+                });
+                if(allCorrect) {
+                    alert('¡Felicidades! ¡Has completado el crucigrama correctamente!');
+                }
+            });
+            
+            generateCrossword();
+        });
+    </script>
+</body>
+</html>
